@@ -1,23 +1,15 @@
 public class ShipsCounter {
-    private static final int[][] ships = {
-            {0, 0, 0, 0, 0, 0, 0, 1, 0, 0,},
-            {0, 1, 0, 0, 0, 0, 0, 1, 0, 0,},
-            {0, 1, 0, 1, 1, 0, 0, 0, 0, 0,},
-            {0, 1, 0, 1, 1, 0, 0, 1, 1, 1,},
-            {0, 1, 0, 0, 0, 0, 0, 0, 0, 0,},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-            {1, 1, 1, 1, 0, 1, 0, 0, 0, 0,},
-            {0, 0, 0, 0, 0, 0, 0, 0, 0, 0,},
-            {1, 1, 0, 0, 0, 0, 0, 1, 0, 0,},
-            {1, 1, 0, 0, 0, 0, 0, 0, 0, 1,}
-    };
+    private int[][] battleField;
 
-    public static void main(String[] args) {
-        int countShips = getCountShips(ships);
-        System.out.println("Number ships on battleField = " + countShips);
+    public ShipsCounter(int[][] battleField) {
+        this.battleField = battleField;
     }
 
-    private static int getCountShips(int[][] battleField) {
+    public int[][] getBattleField() {
+        return battleField;
+    }
+
+    public int getCountShips(int[][] battleField) {
         int countShips = 0;
         for (int coordinateY = 0; coordinateY < battleField.length; coordinateY++) {
             for (int coordinateX = 0; coordinateX < battleField[coordinateY].length;
@@ -34,10 +26,10 @@ public class ShipsCounter {
         return countShips;
     }
 
-    private static boolean isAddedShip(int coordinateY, int coordinateX) {
+    public boolean isAddedShip(int coordinateY, int coordinateX) {
         boolean isAddedShip = false;
-        if (coordinateX > 0 && ships[coordinateY][coordinateX - 1] == 1
-                || coordinateY > 0 && ships[coordinateY - 1][coordinateX] == 1) {
+        if (coordinateX > 0 && battleField[coordinateY][coordinateX - 1] == 1
+                || coordinateY > 0 && battleField[coordinateY - 1][coordinateX] == 1) {
             isAddedShip = true;
         }
         return isAddedShip;
